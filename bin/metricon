@@ -1,0 +1,11 @@
+#!/usr/bin/env node
+
+const metricon = require('../metricon')
+const options = {
+  organization: 'FSInvestments',
+  repositories: ['trade-platform-api', 'signing-service', 'fund-service'],
+  waffleBoard: 'FSInvestments/trade-platform-api',
+  milestone: 'Sprint #10'
+}
+
+metricon.report(options)

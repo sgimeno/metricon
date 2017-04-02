@@ -4,13 +4,7 @@ const waffler = require('./pull/waffle')(config)
 const metrics = require('./metrics')
 const flatten = require('lodash.flatten')
 
-const options = {
-  organization: 'FSInvestments',
-  repositories: ['trade-platform-api', 'signing-service', 'fund-service'],
-  waffleBoard: 'FSInvestments/trade-platform-api'
-}
-
-let report = (milestone) => {
+let report = (options) => {
   let buildResults = (issues) => issues
     .map(i => ({ state: i.state, size: i.waffleIssue.size }))
 
@@ -29,13 +23,13 @@ let report = (milestone) => {
     return Promise.all(repos).then(repoIsues => flatten(repoIsues))
   }
 
-  return getMilestoneData(options.organization, options.repositories, milestone)
+  return getMilestoneData(options.organization, options.repositories, options.milestone)
     .then(res => {
-      console.log('SUMMARY OF %s - %s', options.waffleBoard, milestone)
+      console.log('SUMMARY OF %s - %s', options.waffleBoard, options.milestone)
       let results = buildResults(res)
       metrics.completness(results)
       return res
     })
 }
 
-report('Sprint #10')
+module.exports = { report }
