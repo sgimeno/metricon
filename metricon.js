@@ -14,8 +14,7 @@ let report = (options) => {
         .then(res => waffler.addMetaData(options.waffleBoard, milestone, res))
         .then(res => {
           console.log(`${organization}/${r} - ${milestone}`)
-          let results = buildResults(res)
-          metrics.completness(results)
+          metrics.completness(buildResults(res)).taxonomizer(res)
           return res
         })
     })
@@ -26,8 +25,7 @@ let report = (options) => {
   return getMilestoneData(options.organization, options.repositories, options.milestone)
     .then(res => {
       console.log('SUMMARY OF %s - %s', options.waffleBoard, options.milestone)
-      let results = buildResults(res)
-      metrics.completness(results)
+      metrics.completness(buildResults(res)).taxonomizer(res)
       return res
     })
 }

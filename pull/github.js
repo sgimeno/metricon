@@ -27,14 +27,6 @@ github.getMilestone = (organization, repository, milestone) => {
   let getMilestoneIssues = (milestoneNumber) => {
     return remoteIssues.listIssues({ state: 'all', milestone: milestoneNumber })
       .then((resp) => {
-        // const taxonomy = {}
-        // resp.data.forEach((iss) => {
-        //   if (iss.labels.map(l => l.name).includes('feature')) {
-        //     // console.log(iss.labels)
-        //     taxonomy[iss.labels[0].name] = taxonomy[iss.labels[0].name] || []
-        //     taxonomy[iss.labels[0].name].push(iss)
-        //   }
-        // })
         return resp.data
       })
   }
