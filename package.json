@@ -7,7 +7,7 @@
     "build:web": "browserify metricon.js --standalone metricon -t envify > bin/metricon.js",
     "precommit": "standard --fix",
     "prepush": "npm test",
-    "postinstall": "npm run buikd:web",
+    "postinstall": "npm run build:web",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "test:cli": "./bin/metricon -O sgimeno -R metricon -M \"Test milestone\" -B sgimeno/metricon",
     "test:unit": "tape ./test/unit/**/*.js",
