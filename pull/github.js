@@ -4,6 +4,9 @@ let github = {}
 
 module.exports = (config) => {
   github.config = config
+  if (!github.config.GH_TOKEN) {
+    throw Error('Missing GH_TOKEN in config')
+  }
   github.gh = new GitHub({
     // also acceptable:
     //  username: 'FOO',
