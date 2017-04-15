@@ -4,10 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon bin/metricon",
-    "build:web": "browserify metricon.js --standalone metricon -t envify > build/bundle.js",
+    "build:web": "browserify metricon.js --standalone metricon -t envify > bin/metricon.js",
     "precommit": "standard --fix",
-    "test": "tape ./test/**/*.js"
+    "prepush": "npm test",
+    "postinstall": "npm run buikd:web",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "test:cli": "./bin/metricon -O sgimeno -R metricon -M \"Test milestone\" -B sgimeno/metricon",
+    "test:unit": "tape ./test/unit/**/*.js",
+    "test": "npm run test:unit && npm run test:cli"
   },
   "author": "",
   "license": "MIT",
@@ -23,6 +27,7 @@
     "browserify": "^14.3.0",
     "envify": "^4.0.0",
     "husky": "^0.13.3",
+    "semantic-release": "^6.3.2",
     "standard": "^9.0.2",
     "tape": "^4.6.3"
   }
