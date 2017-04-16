@@ -1,0 +1,29 @@
+#!/usr/bin/env node
+const program = require('commander')
+const pkg = require('../package')
+const metricon = require('../metricon')
+
+function list(val) {
+  return val.split(',');
+}
+
+
+/**
+ * Usage.
+ */
+
+program
+  .option('-O, --organization <n>', 'GitHub organization')
+  .option('-R, --repos <items>', 'List of GitHub organization/repos to be included in the report', list)
+  .option('-M, --milestone <n>', 'Set the report milestone')
+  .option('-B, --board <n>', 'Set the waffle board for the report')
+  .parse(process.argv)
+
+const options = {
+  organization: program.organization,
+  repositories: program.repos,
+  waffleBoard: program.board,
+  milestone: program.milestone
+}
+
+metricon.report(options)
