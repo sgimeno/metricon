@@ -17,7 +17,7 @@ test('github pull exports', assert => {
   const github = pull({ GH_TOKEN: '123' })
   assert.ok(github.config, 'Should have a config')
   assert.ok(github.gh instanceof GitHub, 'Should have a GitHub client')
-  assert.ok(typeof github.getMilestone, 'function', 'Should have a getMilestone method')
+  assert.equal(typeof github.getMilestone, 'function', 'Should have a getMilestone method')
   assert.end()
 })
 

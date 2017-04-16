@@ -6,18 +6,26 @@ let api = {}
 module.exports = (config) => {
   api.config = config
 
-  return waffle
-}
-
-api.get = (path) => {
-  let options = {
-    uri: api.config.WAFFLE_API_URL + path,
-    headers: { 'Authorization': 'Bearer ' + api.config.WAFFLE_TOKEN },
-    json: true
+  if (!api.config.WAFFLE_API_URL) {
+    throw Error('Missing WAFFLE_API_URL in config')
   }
 
-  return rp(options)
-  .catch((err) => console.error(err))
+  if (!api.config.WAFFLE_TOKEN) {
+    throw Error('Missing WAFFLE_TOKEN in config')
+  }
+
+  api.get = (path) => {
+    let options = {
+      uri: api.config.WAFFLE_API_URL + path,
+      headers: { 'Authorization': 'Bearer ' + api.config.WAFFLE_TOKEN },
+      json: true
+    }
+
+    return rp(options)
+    .catch((err) => console.error(err))
+  }
+
+  return waffle
 }
 
 waffle.getCards = (projectId) => {
@@ -29,6 +37,7 @@ waffle.listProjects = () => {
     .then(ps => {
       let projects = ps.map(p => `${p.name} (${p._id})`)
       console.log('PROJECTS:\n', projects.join('\n'))
+      return ps
     })
 }
 
@@ -49,9 +58,9 @@ waffle.addMetaData = (projectName, milestone, issues) => {
 }
 
 waffle.getProjectId = (projectName) => {
-  return waffle.getProject(projectName).then(pr => pr._id)
-}
-waffle.getProject = (projectName) => {
-  return api.get('/user/projects')
+  let findProject = (projectName) => {
+    return api.get('/user/projects')
       .then(ps => ps.find(p => p.name === projectName))
+  }
+  return findProject(projectName).then(pr => pr._id)
 }
