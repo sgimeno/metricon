@@ -8,7 +8,7 @@
     "url": "https://github.com/sgimeno/metricon.git"
   },
   "scripts": {
-    "build:web": "browserify metricon.js --standalone metricon -t envify > bin/metricon.js",
+    "build:web": "browserify index.js --standalone metricon -t envify > bin/metricon.js",
     "precommit": "standard --fix",
     "prepush": "npm test",
     "postinstall": "npm run build:web",

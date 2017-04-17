@@ -1,5 +1,5 @@
 const test = require('tape')
-const pull = require('../../../pull/waffle')
+const pull = require('../../lib/waffle')
 
 test('waffle pull fails to export without waffle API url', assert => {
   try {

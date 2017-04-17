@@ -1,6 +1,6 @@
 const test = require('tape')
 const GitHub = require('github-api')
-const pull = require('../../../pull/github')
+const pull = require('../../lib/github')
 
 test('github pull fails to export', assert => {
   try {

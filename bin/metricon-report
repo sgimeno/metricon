@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const program = require('commander')
 const pkg = require('../package')
-const metricon = require('../metricon')
+const metricon = require('..')
 
 function list(val) {
   return val.split(',');
