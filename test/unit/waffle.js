@@ -25,29 +25,10 @@ test('waffle pull fails to export without waffle API token', assert => {
 
 test('waffle pull exports', assert => {
   const waffle = pull({ WAFFLE_API_URL: 'http://fake.com', WAFFLE_TOKEN: '123' })
-  assert.equal(typeof waffle.listProjects, 'function', 'Should have a listProjects method')
   assert.equal(typeof waffle.addMetaData, 'function', 'Should have a addMetaData method')
   assert.equal(typeof waffle.getCards, 'function', 'Should have a getCards method')
   assert.equal(typeof waffle.getProjectId, 'function', 'Should have a getProjectId method')
   assert.end()
-})
-
-test('waffle.listProjects expected output', assert => {
-  const waffle = pull({
-    WAFFLE_API_URL: process.env.WAFFLE_API_URL,
-    WAFFLE_TOKEN: process.env.WAFFLE_TOKEN
-  })
-
-  waffle.listProjects()
-    .then(projects => {
-      assert.ok(projects.length > 0, 'Should return at least 1 project')
-      assert.end()
-    })
-    .catch(err => {
-      console.error(err)
-      assert.fail('Should not get here')
-      assert.end()
-    })
 })
 
 test('waffle.getProjectId expected output', assert => {
@@ -68,7 +49,7 @@ test('waffle.getProjectId expected output', assert => {
     })
 })
 
-test('waffle.listProjects expected output', assert => {
+test('waffle.getCards expected output', assert => {
   const waffle = pull({
     WAFFLE_API_URL: process.env.WAFFLE_API_URL,
     WAFFLE_TOKEN: process.env.WAFFLE_TOKEN
