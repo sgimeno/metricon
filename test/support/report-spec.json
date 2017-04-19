@@ -1,0 +1,39 @@
+{
+  "name": "Test milestone report",
+  "source": {
+    "milestone": {
+      "name": "Test milestone",
+      "state": "open",
+      "started_at": "2017-04-15T16:01:37Z",
+      "due_on": "2022-04-23T07:00:00Z",
+      "metrics": {
+        "open_size": 3,
+        "closed_size": 0,
+        "open_issues": 1,
+        "closed_issues": 0
+      }
+    },
+    "taxonomy": {
+      "test-issue": {
+        "metrics": {
+          "size": 3
+        }
+      }
+    }
+  },
+  "data": {
+    "milestone": {
+      "completness": {
+        "size": 3,
+        "issues": 1
+      }
+    },
+    "taxonomy": {
+      "test-issue": {
+        "completness": {
+          "size": 0
+        }
+      }
+    }
+  }
+}
