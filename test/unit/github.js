@@ -1,28 +1,38 @@
 const test = require('tape')
 const GitHub = require('github-api')
-const pull = require('../../lib/github')
+const github = require('../../lib/github')
 
-test('github pull fails to export', assert => {
+test('github pull exports', assert => {
+  const client = github()
+  assert.ok(client.config, 'Should have a config')
+  assert.equal(typeof client.getMilestone, 'function', 'Should have a getMilestone method')
+  assert.equal(typeof client.login, 'function', 'Should have a login method')
+  assert.end()
+})
+
+test('github login should create a github-api client', assert => {
+  const client = github().login({ token: '123' })
+  assert.ok(client.api instanceof GitHub, 'Should have a GitHub client')
+  assert.end()
+})
+
+test('github login without credentials fails', assert => {
   try {
-    const github = pull({})
-    assert.fail(github, 'Should not create a pull')
+    const client = github()
+    client.login({ username: 'foo' })
   } catch (e) {
-    assert.equal(e.message, 'Missing GH_TOKEN in config', 'Should throw an exception')
+    assert.equal(
+      e.message,
+      'Missing credentials in options, provide token or username + password',
+      'Should throw an exception'
+    )
   } finally {
     assert.end()
   }
 })
 
-test('github pull exports', assert => {
-  const github = pull({ GH_TOKEN: '123' })
-  assert.ok(github.config, 'Should have a config')
-  assert.ok(github.gh instanceof GitHub, 'Should have a GitHub client')
-  assert.equal(typeof github.getMilestone, 'function', 'Should have a getMilestone method')
-  assert.end()
-})
-
 test('github.getMilestone expected output', assert => {
-  const github = pull({ GH_TOKEN: process.env.GH_TOKEN })
-  assert.ok(github.getMilestone() instanceof Promise, 'Should return a Promise')
+  const client = github().login({ token: '123' })
+  assert.ok(client.getMilestone() instanceof Promise, 'Should return a Promise')
   assert.end()
 })
