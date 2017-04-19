@@ -9,6 +9,7 @@
   },
   "scripts": {
     "build:web": "browserify index.js --standalone metricon -t envify > bin/metricon.js",
+    "dev": "tape-watch ./test/unit/**/*.js",
     "precommit": "standard --fix",
     "prepush": "npm test",
     "postinstall": "npm run build:web",
@@ -33,6 +34,7 @@
     "husky": "^0.13.3",
     "semantic-release": "^6.3.2",
     "standard": "^9.0.2",
-    "tape": "^4.6.3"
+    "tape": "^4.6.3",
+    "tape-watch": "^2.3.0"
   }
 }
