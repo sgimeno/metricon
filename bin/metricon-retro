@@ -1,0 +1,29 @@
+#!/usr/bin/env node
+const program = require('commander')
+const pkg = require('../package')
+const metricon = require('..')
+
+function list(val) {
+  return val.split(',');
+}
+
+
+/**
+ * Usage.
+ */
+
+program
+  .option('-O, --organization <n>', 'GitHub organization')
+  .option('-M, --milestone <n>', 'Set the retro milestone')
+  .option('-E --emotion <emotion>', 'Emotion tag', /^(glad|sad|mad|unknown)$/i, 'unknown')
+  .option('-D, --description <n>', 'Description of the emotion')
+  .option('-C, --credentials <n>', 'Path to Firebase serviceAccountCredentials')
+  .parse(process.argv)
+
+metricon.retro({
+  tag: program.emotion,
+  text: program.description,
+  milestone: program.milestone,
+  organization: program.organization,
+  path: program.credentials
+})

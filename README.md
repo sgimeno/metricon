@@ -5,8 +5,26 @@
 metricon
 ========
 
+### Usage
+```
+$ npm i -g metricon
+$ export GH_TOKEN=<YOUR_GITHUB_TOKEN>
+# You can generate one here: https://github.com/settings/tokens/
+```
 
-### Get started
+#### Commands
+
+```
+$ metricon report -O sgimeno -R metricon -M "Test milestone" -B sgimeno/metricon
+```
+```
+$ metricon retro -O sgimeno -M "Test milestone" -E glad -D "DevOps are just crazy"
+```
+
+
+
+
+### Develop
 
 ```
 $ npm install
@@ -21,7 +39,5 @@ $ npm test
 
 ### TODO
 
- + count issues per label, return labels percentages
-   + open & close
- + track opens & closes by username
- + milestone planning tool
+ + document options
+ + add CLI for login
