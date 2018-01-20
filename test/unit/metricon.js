@@ -21,8 +21,7 @@ test('Metricon report expected output', assert => {
   const options = {
     organization: 'sgimeno',
     repositories: ['metricon'],
-    milestone: 'Test milestone',
-    waffleBoard: 'sgimeno/metricon'
+    milestone: 'Test milestone'
   }
 
   metricon.report(options)

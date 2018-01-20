@@ -14,7 +14,7 @@
     "prepush": "npm test",
     "postinstall": "npm run build:web",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "test:cli": "./bin/metricon report -O sgimeno -R metricon -M \"Test milestone\" -B sgimeno/metricon",
+    "test:cli": "./bin/metricon report -O sgimeno -R metricon -M \"Test milestone\"",
     "test:unit": "tape ./test/unit/**/*.js",
     "test": "npm run test:unit && npm run test:cli"
   },
