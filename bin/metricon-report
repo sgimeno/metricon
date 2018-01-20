@@ -16,6 +16,9 @@ program
   .option('-O, --organization <n>', 'GitHub organization')
   .option('-R, --repos <items>', 'List of GitHub organization/repos to be included in the report', list)
   .option('-M, --milestone <n>', 'Set the report milestone')
+  .option('-T, --token <n>', 'Login token')
+  .option('-U, --username <n>', 'Login username')
+  .option('-P, --password <n>', 'Login password')
   // .option('-B, --board <n>', 'Set the waffle board for the report')
   .parse(process.argv)
 
@@ -24,5 +27,10 @@ const options = {
   repositories: program.repos,
   milestone: program.milestone
 }
-
+const credentials = {
+  username: program.username,
+  password: program.password,
+  token: program.token || process.env.GH_TOKEN
+}
+metricon.auth(credentials)
 metricon.report(options)

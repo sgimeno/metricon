@@ -8,13 +8,12 @@
     "url": "https://github.com/sgimeno/metricon.git"
   },
   "scripts": {
-    "build:web": "browserify index.js --standalone metricon -t envify > bin/metricon.js",
     "dev": "tape-watch ./test/unit/**/*.js",
     "precommit": "standard --fix",
     "prepush": "npm test",
     "postinstall": "npm run build:web",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "test:cli": "./bin/metricon report -O sgimeno -R metricon -M \"Test milestone\"",
+    "test:cli": "./bin/metricon report -O sgimeno -R metricon -T $GH_TOKEN_TEST",
     "test:unit": "tape ./test/unit/**/*.js",
     "test": "npm run test:unit && npm run test:cli"
   },

@@ -1,7 +1,5 @@
 sudo: false
 language: node_js
-env:
-  - WAFFLE_API_URL=https://api.waffle.io
 cache:
   directories:
     - node_modules
