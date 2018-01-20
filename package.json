@@ -2,7 +2,7 @@
   "name": "metricon",
   "version": "1.0.0",
   "description": "",
-  "main": "metricon.js",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/sgimeno/metricon.git"
