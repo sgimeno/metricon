@@ -26,6 +26,6 @@ test('github login without credentials fails', assert => {
 
 test('github.getMilestone expected output', assert => {
   const client = github({ credentials: { token: '123' } })
-  assert.ok(client.getMilestone() instanceof Promise, 'Should return a Promise')
+  assert.ok(client.getMilestoneIssues({}) instanceof Promise, 'Should return a Promise')
   assert.end()
 })
