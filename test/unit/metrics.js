@@ -24,3 +24,20 @@ test('metrics.completness() expected output', assert => {
   assert.deepEqual(actual, expected, 'Should return the same counters')
   assert.end()
 })
+
+test('metrics.taxonomizer() expected output', assert => {
+  let issues = [
+    { state: 'closed', labels: [{ name: 'foo' }] },
+    { state: 'closed', labels: [{ name: 'foo' }, { name: 'bar' }] },
+    { state: 'closed', labels: [] },
+    { state: 'open', labels: [{ name: 'foo' }, { name: 'bar' }, { name: 'baz' }] }
+  ]
+  let actual = metrics.taxonomizer(issues)
+  let expected = [
+    { name: 'foo', count: 3, percentage: 0.75 },
+    { name: 'bar', count: 2, percentage: 0.50 },
+    { name: 'baz', count: 1, percentage: 0.25 }
+  ]
+  assert.deepEqual(actual, expected, 'Should return the same counters')
+  assert.end()
+})
